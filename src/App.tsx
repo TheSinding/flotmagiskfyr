@@ -1,24 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef, useState } from "react";
+import ConfettiGenerator from "confetti-js";
+import "./App.css";
 
 function App() {
+  const locationURL = new URL(window.location.href);
+  const [name, setName] = useState(locationURL.searchParams.get("n"));
+  const canvasRef = useRef(null);
+  console.log(window.location);
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    // @ts-ignore
+    const confetti = new ConfettiGenerator({
+      target: "my-canvas",
+      props: ["square"],
+    });
+    confetti.render();
+    return () => confetti.clear();
+  }, []);
+
   return (
     <div className="App">
+      <canvas
+        ref={canvasRef}
+        id="my-canvas"
+        style={{
+          top: "0",
+          left: "0",
+          position: "fixed",
+          zIndex: 1,
+          height: "100vh",
+          width: "100vw",
+        }}
+      ></canvas>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <p>Hvem er en flot magisk fyr?</p>
+        <img src="/ice_t_wanna_be.jpg" width="400" alt="" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          <b>{name ? name : "Du"}</b> er en flot magisk fyr!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <footer className="App-footer">
+        <div className="col">
+          Lavet af <a href="sinding.dev">Simon Sinding</a> til <b>dig</b>!
+        </div>
+        <div className="col">Del med en anden flot magisk fyr!</div>
+      </footer>
     </div>
   );
 }
