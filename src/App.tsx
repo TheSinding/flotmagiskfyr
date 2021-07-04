@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import ConfettiGenerator from "confetti-js";
 import "./App.css";
 
 function App() {
   const locationURL = new URL(window.location.href);
-  const [name, setName] = useState(locationURL.searchParams.get("n"));
+  const name = locationURL.searchParams.get("n");
   const canvasRef = useRef(null);
   console.log(window.location);
   useEffect(() => {
@@ -27,7 +27,6 @@ function App() {
           top: "0",
           left: "0",
           position: "fixed",
-          zIndex: 1,
           height: "100vh",
           width: "100vw",
         }}
