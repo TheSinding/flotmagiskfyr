@@ -40,7 +40,8 @@ function App() {
       </header>
       <footer className="App-footer">
         <div className="col">
-          Lavet af <a href="sinding.dev">Simon Sinding</a> til <b>dig</b>!
+          Lavet af <a href="https://sinding.dev">Simon Sinding</a> til{" "}
+          <b>dig</b>!
         </div>
         <div className="col">Del med en anden flot magisk fyr!</div>
       </footer>
